@@ -100,11 +100,30 @@ function getNewVersionCode(programOpts, versionCode, versionName, resetBuild) {
  * @private
  * @param {String} versionName The full version string
  * @param {Boolean} allowInvalidShortVersionString Whether or not to allow short version strings like '1.2.3-beta.1'
+ * @param {Boolean} useCharacterSuffix Use character suffix like '1.2.3b1'
  * @return {String} e.g. returns '1.2.3' for given '1.2.3-beta.1'. Returns `versionName` if no match is found.
  */
-function getCFBundleShortVersionString(versionName, allowInvalidShortVersionString = false) {
+function getCFBundleShortVersionString(versionName, allowInvalidShortVersionString = false, useCharacterSuffix = false) {
 	if (allowInvalidShortVersionString) {
-		return versionName
+		return versionName;
+	}
+
+	if (useCharacterSuffix) {
+		// https://regex101.com/r/eEv2b7/2
+		const matches = versionName.match(/(\d*\.\d*.\d*)-(\w*)(\.)(\d*)/);
+
+		if (matches && matches.length === 5) {
+			const baseVer = matches[1];
+			const suffixName = matches[2];
+			const suffixVer = matches[4];
+
+
+			if ([baseVer, suffixName, suffixVer].every(val => typeof val === 'string' && val.length > 0)) {
+				const suffixChar = suffixName[0]
+
+				return `${baseVer}${suffixChar}${suffixVer}`
+			}
+		}
 	}
 
 	const match =
@@ -450,6 +469,7 @@ function version(program, projectPath) {
 												CFBundleShortVersionString: getCFBundleShortVersionString(
 													appPkg.version,
 													programOpts.allowInvalidShortVersionString,
+													programOpts.useCharacterSuffix,
 												)
 										  }
 										: {},

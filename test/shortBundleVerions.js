@@ -40,3 +40,13 @@ test("CFBundleShortVersionString allow invalid, with valid", (t) => {
 	const v = getCFBundleShortVersionString("1.2.3", true);
 	t.is(v, "1.2.3");
 });
+
+test("CFBundleShortVersionString with suffix char, version without suffix", (t) => {
+	const v = getCFBundleShortVersionString("1.2.3", false, true);
+	t.is(v, "1.2.3");
+});
+
+test("CFBundleShortVersionString with suffix char, version with suffix", (t) => {
+	const v = getCFBundleShortVersionString("1.2.3-beta.1", false, true);
+	t.is(v, "1.2.3b1");
+});

@@ -1,13 +1,13 @@
-import beforeEach from "./beforeEach";
-import child from "child_process";
-import { cliPath } from "../fixtures";
-import getCurrCommitHash from "./getCurrCommitHash";
-import getCurrTagHash from "./getCurrTagHash";
-import getCurrTree from "./getCurrTree";
-import getCurrVersion from "./getCurrVersion";
-import tempInitAndVersion from "./tempInitAndVersion";
+const beforeEach = require("./beforeEach");
+const child = require("child_process");
+const { cliPath } = require("../fixtures");
+const getCurrCommitHash = require("./getCurrCommitHash");
+const getCurrTagHash = require("./getCurrTagHash");
+const getCurrTree = require("./getCurrTree");
+const getCurrVersion = require("./getCurrVersion");
+const tempInitAndVersion = require("./tempInitAndVersion");
 
-export default async (
+module.exports = async (
 	t,
 	params,
 	testProject,
@@ -24,8 +24,8 @@ export default async (
 		[].concat(params).filter(Boolean),
 		{
 			env: Object.assign({}, process.env, {
-				RNV_ENV: "ava"
-			})
+				RNV_ENV: "ava",
+			}),
 		}
 	);
 

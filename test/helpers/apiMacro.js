@@ -1,12 +1,12 @@
-import beforeEach from "./beforeEach";
-import getCurrCommitHash from "./getCurrCommitHash";
-import getCurrTagHash from "./getCurrTagHash";
-import getCurrTree from "./getCurrTree";
-import getCurrVersion from "./getCurrVersion";
-import tempInitAndVersion from "./tempInitAndVersion";
-import { version } from "../../";
+const beforeEach = require("./beforeEach");
+const getCurrCommitHash = require("./getCurrCommitHash");
+const getCurrTagHash = require("./getCurrTagHash");
+const getCurrTree = require("./getCurrTree");
+const getCurrVersion = require("./getCurrVersion");
+const tempInitAndVersion = require("./tempInitAndVersion");
+const { version } = require("../../");
 
-export default async (
+module.exports = async (
 	t,
 	params,
 	testProject,

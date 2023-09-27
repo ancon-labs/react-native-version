@@ -1,8 +1,8 @@
-import apiMacro from "./helpers/apiMacro";
-import cliMacro from "./helpers/cliMacro";
-import expected from "./fixtures";
-import npmScriptsMacro from "./helpers/npmScriptsMacro";
-import test from "ava";
+const apiMacro = require("./helpers/apiMacro");
+const cliMacro = require("./helpers/cliMacro");
+const expected = require("./fixtures");
+const npmScriptsMacro = require("./helpers/npmScriptsMacro");
+const test = require("ava");
 
 test(
 	"postversion (legacy)",

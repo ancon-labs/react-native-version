@@ -1,14 +1,14 @@
-import beforeEach from "./beforeEach";
-import { cliPath } from "../fixtures";
-import fs from "fs-extra";
-import getCurrCommitHash from "./getCurrCommitHash";
-import getCurrTagHash from "./getCurrTagHash";
-import getCurrTree from "./getCurrTree";
-import getCurrVersion from "./getCurrVersion";
-import tempInitAndVersion from "./tempInitAndVersion";
-import testPkgJSON from "../fixtures/AwesomeProject/package";
+const beforeEach = require("./beforeEach");
+const { cliPath } = require("../fixtures");
+const fs = require("fs-extra");
+const getCurrCommitHash = require("./getCurrCommitHash");
+const getCurrTagHash = require("./getCurrTagHash");
+const getCurrTree = require("./getCurrTree");
+const getCurrVersion = require("./getCurrVersion");
+const tempInitAndVersion = require("./tempInitAndVersion");
+const testPkgJSON = require("../fixtures/AwesomeProject/package.json");
 
-export default async (
+module.exports = async (
 	t,
 	params,
 	testProject,
@@ -20,20 +20,20 @@ export default async (
 
 	const newScript = {};
 
-	Object.keys(params).forEach(key => {
+	Object.keys(params).forEach((key) => {
 		newScript[key] = `${cliPath} ${params[key]}`;
 	});
 
 	const newTestPkgJSON = JSON.stringify(
 		Object.assign({}, testPkgJSON, {
-			scripts: Object.assign({}, testPkgJSON.scripts, newScript)
+			scripts: Object.assign({}, testPkgJSON.scripts, newScript),
 		}),
 		null,
 		2
 	);
 
 	fs.writeFileSync("package.json", `${newTestPkgJSON}\n`, {
-		cwd: t.context.tempDir
+		cwd: t.context.tempDir,
 	});
 
 	tempInitAndVersion();

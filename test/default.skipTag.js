@@ -1,6 +1,6 @@
-import expected from "./fixtures";
-import npmScriptsMacro from "./helpers/npmScriptsMacro";
-import test from "ava";
+const expected = require("./fixtures");
+const npmScriptsMacro = require("./helpers/npmScriptsMacro");
+const test = require("ava");
 
 test(
 	"postversion (legacy)",

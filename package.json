@@ -30,7 +30,7 @@
     "lodash.flattendeep": "^4.4.0",
     "lodash.uniq": "^4.5.0",
     "p-settle": "^4.0.0",
-    "pbxproj-dom": "^1.0.11",
+    "pbxproj-dom": "https://github.com/ancon-labs/pbxproj-dom.git#fix/backslashes-in-scripts-with-dist",
     "plist": "^3.0.1",
     "resolve-from": "^5.0.0",
     "semver": "^7.0.0"
